@@ -64,20 +64,24 @@ def pregunta_01():
     En esta función se realiza la carga de datos.
     """
     # Lea el archivo `mushrooms.csv` y asignelo al DataFrame `df`
-    df = ____
+    df = pd.read_csv(
+    "mushrooms.csv",
+    sep = ',',         
+    thousands = None,  
+    decimal = '.') 
 
     # Remueva la columna `veil-type` del DataFrame `df`.
     # Esta columna tiene un valor constante y no sirve para la detección de hongos.
-    ____.____(____)
+    df = df.copy().drop(columns = 'veil_type')
 
     # Asigne la columna `type` a la variable `y`.
-    ____ = ____
+    y = df[['type']]
 
     # Asigne una copia del dataframe `df` a la variable `X`.
-    ____ = ____.____(____)
+    X = df.copy()
 
     # Remueva la columna `type` del DataFrame `X`.
-    ____.____(____)
+    X = X.loc[:, X.columns != 'type']
 
     # Retorne `X` y `y`
     return X, y
